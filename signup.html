@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/bamboo.css">
+</head>
+<body>
+    <form action="signup.php" method="post">
+        <table>
+            <tr>
+                <div>
+                    <td><label for="name">Product Name</label></td>
+                    <td><input type="text" id="name" name="name" required placeholder="Enter Product Name"></td>    
+        </div>
+            </tr>
+
+            <tr>
+                <div>
+                    <td><label for="SKU">SKU</label></td>    
+                    <td><input type="number" id="SKU" name="SKU" required placeholder="Enter 15 digit SKU"></td>  
+                </div>
+            </tr>
+
+             <tr>
+                <div>
+                    <td><label for="Product Type">Product Type : </label></td>
+                    <td><input type="radio" name="producttype" value="Simple" required>Simple
+                    <input type="radio" name="producttype" value="Bundle" required>Bundle</td>
+                </div>
+             </tr>  
+
+             <tr>
+                <div>
+                    <td><label for="Category">Category : </label></td>
+                    <td>
+                        <select id="category" name="category" required>
+                            <option value="Bar & Game Room">Bar & Game Room</option>
+                            <option value="Bedroom">Bedroom</option>
+                            <option value="Decor">Decor</option>
+                            <option value="Dining & kitchen">Dining & kitchen</option>
+                            <option value="Lighting">Lighting</option>
+                            <option value="Living room">Living room</option>
+                            <option value="Matresses">Matresses</option>
+                            <option value="Office">Office</option>
+                            <option value="Outdoor">Outdoor</option>
+                        </select>
+                    </td>
+                </div>
+             </tr>
+
+             <tr>
+                <div>
+                    <td><label for="Manufacturer cost">Manufacturer cost</label></td>
+                    <td><input type="number" name="manucost" required placeholder="Enter manufacturing cost"></td>
+                </div>
+             </tr>
+
+             <tr>
+                <div>
+                    <td><label for="Shipping cost">Shipping cost</label></td>
+                    <td><input type="number" name="shipcost" required placeholder="Enter shipping cost"></td>
+                </div>
+             </tr>
+
+             <tr>
+                <div>
+                    <td><label for="Total cost">Total cost</label></td>
+                    <td><input type="number" name="totalcost" required placeholder="Enter total cost"></td>
+                </div>
+             </tr>
+
+             <tr>
+                <div>
+                    <td><label for="Price">Price</label></td>
+                    <td><input type="number" name="price" required placeholder="Enter price"></td>
+                </div>
+             </tr>
+             
+             <tr>
+                <div>
+                    <td><label for="Status">Status</label></td>    
+                    <td>
+                        <select id="Status" name="Status" required>
+                            <option value="Enabled">Enabled</option>
+                            <option value="Disabled">Disabled</option>
+                        </select>
+                    </td>
+                </div>
+             </tr>
+
+            <tr>
+                <div>
+                    <td><label for="Created At">Created At</label></td>
+                    <td><input type="date" id="created_date" name="cdate" required></td>
+                </div>
+            </tr> 
+
+            <tr>
+                <div>
+                    <td><label for="Updated At">Updated At</label></td>
+                    <td><input type="date" id="updated_date" name="udate" required></td>
+                </div>
+            </tr> 
+
+             <tr>
+                <div>
+                    <td><button type="submit" name="Submit">Submit</button></td>
+                </div>
+             </tr>
+        </table>
+    </form>
+</body>
+</html>
