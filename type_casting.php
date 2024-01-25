@@ -165,5 +165,7 @@
     // echo "<br>";
 
     //Unset() function is deprecated after PHP 8.0
-
+    110
+    100
+    sum=((a-b)/a)*100
 ?>

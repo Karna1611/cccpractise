@@ -117,5 +117,11 @@
         }
         }
         print_r($arr);
+        // function update($table_name,$data,$condition)
+        // {
+        //     $column=$value=[];
+        //     foreach($condition in ) 
+        //     "UPDATE ($table_name) SET ($column) = ($value1) WHERE ($value)";
+        // }
 
 ?>
