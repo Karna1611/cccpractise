@@ -1,42 +1,104 @@
 <?php
 // Function to generate SQL insert query
-function insertQuery($table, $data) {
+// function insertQuery($table, $data) {
+//     $columns = implode(", ", array_keys($data));
+//     $values = "'" . implode("', '", array_values($data)) . "'";
+//     $query = "INSERT INTO $table ($columns) VALUES ($values)";
+//     return $query;
+// }
+
+// Function to generate SQL insert query
+function insert($conn, $table, $data) {
     $columns = implode(", ", array_keys($data));
     $values = "'" . implode("', '", array_values($data)) . "'";
     $query = "INSERT INTO $table ($columns) VALUES ($values)";
-    return $query;
+
+    $result = $conn->query($query);
+
+    if ($result) {
+        return "success";
+    } else {
+        return $conn->error;
+    }
 }
 
+
 // Function to generate SQL update query
-// function updateQuery($table, $data, $condition) {
-//     // $set = "";
-//     // $conditions="";
-//     // foreach ($data as $key => $value) {
-//     //     $set .= "$key = '$value', ";
-//     // }
-//     // foreach ($condition as $key => $value) {
-//     //     $conditions .= "$key = '$value', ";
-//     // }
-//     // $set = rtrim($set, ", ");
-//     // $query = "UPDATE $table SET $set WHERE $conditions";
-//     // return $query;
+// function update($table, $data, $condition) {
+//     $set = "";
+//     $conditions="";
+//     foreach ($data as $key => $value) {
+//         $set .= "$key = '$value', ";
+//     }
+//     foreach ($condition as $key => $value) {
+//         $conditions .= "$key = '$value', ";
+//     }
+//     $set = rtrim($set, ", ");
+//     $query = "UPDATE $table SET $set WHERE $conditions";
+//     return $query;
 // }
 
-function updateQuery($table, $data ,$product_id) {
+function update($conn, $table, $data, $condition) {
     $set = "";
     foreach ($data as $key => $value) {
         $set .= "$key = '$value', ";
     }
     $set = rtrim($set, ", ");
-    $query = "UPDATE $table SET $set WHERE product_id=$product_id";
-    return $query;
+
+    $conditions = "";
+    foreach ($condition as $key => $value) {
+        $conditions .= "$key = '$value' AND ";
+    }
+    $conditions = rtrim($conditions, " AND ");
+
+    $query = "UPDATE $table SET $set WHERE $conditions";
+
+    $result = $conn->query($query);
+
+    if ($result) {
+        return "success";
+    } else {
+        return $conn->error;
+    }
 }
 
+
+
+
+// function updateQuery($table, $data ,$product_id) {
+//     $set = "";
+//     foreach ($data as $key => $value) {
+//         $set .= "$key = '$value', ";
+//     }
+//     $set = rtrim($set, ", ");
+//     $query = "UPDATE $table SET $set WHERE product_id=$product_id";
+//     return $query;
+// }
+
 // Function to generate SQL delete query
-function deleteQuery($table, $product_id) {
-    $query = "DELETE FROM $table WHERE product_id=$product_id";
-    return $query;
+// function deleteQuery($table, $condition) {
+//     $query = "DELETE FROM $table WHERE $condition";
+//     return $query;
+// }
+
+// Function to generate SQL delete query
+function delete($conn, $table, $condition) {
+    $whereClause = '';
+    foreach ($condition as $key => $value) {
+        $whereClause .= "$key = '$value' AND ";
+    }
+    $whereClause = rtrim($whereClause, " AND ");
+
+    $query = "DELETE FROM $table WHERE $whereClause";
+    $result = $conn->query($query);
+
+    if ($result) {
+        return "success";
+    } else {
+        return "error";
+    }
 }
+
 
 // Function to generate SQL select query
 function selectQuery($table, $columns = "*", $condition = "") {
