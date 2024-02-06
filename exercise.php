@@ -68,6 +68,8 @@
     for($i=0;$i<$number;$i++)
         echo fibbonacci($i),''."<br>";
 
+
+
     function factorial($number)
     {
         if($number <= 1)
@@ -78,6 +80,8 @@
     $number=4;
     $answer=factorial($number);
     echo "Factorial of : ".$number." is: ".$answer."<br>";
+
+
 
     $arr=array(2,5,1,7,4);
     echo "ASCENDING ORDER"."<br>";

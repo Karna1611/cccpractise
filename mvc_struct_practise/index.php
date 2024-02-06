@@ -1,16 +1,32 @@
 <?php
     include "Lib/autoload.php";
-    //echo "123";die;
-    $request=new Model_Request();
+    
+    class Ccc
+    {
+        public static function init()
+        {
+            //echo "1,2,3";
+            $req=new Controller_front();
+            $text= $req->init();
 
-    if(!$request->isPost())
-    {
-        $product=new View_Product();
-        echo $product->toHtml();
+            echo($text);
+
+            // $front=new Controller_Front();
+
+        }
     }
-    else
-    {
-        $product=new Model_Product();
-        $product->save($request->getParams('pdata'));
-    }
+    Ccc::init();
+    //echo "123";die;
+    // $request=new Model_Request();
+
+    // if(!$request->isPost())
+    // {
+    //     $product=new View_Product();
+    //     echo $product->toHtml();
+    // }
+    // else
+    // {
+    //     $product=new Model_Product();
+    //     $product->save($request->getParams('pdata'));
+    // }
 ?>
