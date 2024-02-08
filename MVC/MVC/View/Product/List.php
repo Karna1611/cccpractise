@@ -1,5 +1,5 @@
 <?php
-class View_ProductList{
+class View_Product_List{
     public $rowObj;
     public function __construct(){
         $obj=new Model_Abstract();
@@ -14,12 +14,12 @@ class View_ProductList{
     }
     public function createTable(){
         $table='<div class="box">
-                 <div class="container">
-                    <div class="title">Product Information
+                 <div class = "title_btn">
+                    <div class="title">Product Information</div>
                     <a href="index.php?action=add&product_id=0"><button type="submit" name="btn_add" class="ins">Add</button></a>
                     </div>
                     <div class="content">';
-                     $table.='<table border="2px">
+                     $table.='<table border="1px">
                         <tr><th>Product Id</th>
                             <th>Product Name</th>
                             <th>Product SKU</th>
@@ -40,12 +40,11 @@ class View_ProductList{
                         }
                      $table.='</table>';
                     $table.=' </div>
-                </div>
                 </div>';
         return $table;
     }
     public function toHtml(){
-        $css='<link rel="stylesheet" href="View/CSS/style.css">';
+        $css='<link rel="stylesheet" href="..\..\View\CSS\styles.css">';
         $form=$this->createTable();
         return $css.$form;
                

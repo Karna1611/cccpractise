@@ -9,7 +9,7 @@ class Lib_Sql_Connection{
             $servername='localhost';
             $username='root';
             $passsword='';
-            $dbname='ccc_practice';
+            $dbname='ccc_practise';
 
             //create connection
             $this->conn=mysqli_connect($servername,$username,$passsword,$dbname) or die("<h3 style='color: red;'>ERROR: Could not connect. "
