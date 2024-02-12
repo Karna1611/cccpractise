@@ -5,11 +5,14 @@ class Core_Model_Request
     public function __construct()
     {
         $requestUri = $this->getRequestUri();
-        $requestUri = explode('/', $requestUri);
-        print_r($requestUri);
-        $this->_moduleName = $requestUri[0];
-        $this->_controllerName = $requestUri[1];
-        $this->_actionName = $requestUri[2];
+        if ($requestUri != "") {
+            $requestUri = explode("/", $requestUri);
+        }
+        // print_r($requestUri);
+        $this->_moduleName = isset($requestUri[0]) ? $requestUri[0] : 'page';
+        $this->_controllerName = isset($requestUri[1]) ? $requestUri[1] : 'index';
+        $this->_actionName = isset($requestUri[2]) ? $requestUri[2] : 'index';
+        // die();
     }
     public function getParams($key = '')
     {
