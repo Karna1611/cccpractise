@@ -15,10 +15,10 @@ class Core_Block_Layout extends Core_Block_Template
     {
         Mage::getBlock("page/header");
     }
-    public function getRequest()
-    {
-        return Mage::getModel('core/request');
-    }
+    // public function getRequest()
+    // {
+    //     return Mage::getModel('core/request');
+    // }
 
 
 

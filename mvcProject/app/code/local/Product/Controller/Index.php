@@ -1,13 +1,20 @@
 <?php
-
 class Product_Controller_Index
 {
-    public function indexAction()
+    public function newAction()
     {
-        echo "2323";
+        echo "Product New Action";
     }
-    // public function abcAction()
-    // {
-    //     echo 6666;
-    // }
+    public function listAction()
+    {
+        echo "Product List Action";
+    }
+    public function saveAction()
+    {
+        echo "Product Save Action";
+    }
+    public function deleteAction()
+    {
+        echo "Product Delete Action";
+    }
 }

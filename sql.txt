@@ -1,0 +1,25 @@
+Product ID
+Category ID
+Product Name
+Category Name
+
+Cat ID
+Cat Name
+
+SELECT c., count(*) as no_of_product from ccc_product p JOIN ccc_category c on p.cat_id = c.cat_id GROUP by c.cat_id
+
+SELECT c.cat_id, count(*) as no_of_product from ccc_product p JOIN ccc_category c on p.cat_id = c.cat_id GROUP by c.cat_id;
+
+SELECT c.cat_id,c.cat_name,COUNT(c.cat_id) as total_category from ccc_category as c INNER JOIN ccc_product as p ON c.cat_id=p.cat_id GROUP by p.cat_id HAVING COUNT(c.cat_id)>2;
+
+SELECT cat_name, GROUP_CONCAT(DISTINCT cat_id order by cat_id SEPARATOR ',') AS "CATEGORY IDS" FROM ccc_category GROUP BY cat_name;
+
+SKU Unique 
+
+SELECT c.cat_id, c.cat_name, COUNT(c.cat_id) AS no_of_product, GROUP_CONCAT(DISTINCT p.product_name) as All_Product_Name FROM ccc_category AS c JOIN ccc_product AS p ON c.cat_id = p.cat_id GROUP BY p.cat_id HAVING COUNT(c.cat_id) > 2;
+
+SELECT c.cat_id, c.cat_name, COUNT(c.cat_id) AS no_of_product, GROUP_CONCAT(DISTINCT p.product_name) AS All_Product_Name FROM ccc_category AS c JOIN ccc_product AS p ON c.cat_id = p.cat_id GROUP BY p.cat_id HAVING COUNT(c.cat_id) >= 2 ORDER BY COUNT(c.cat_id) DESC LIMIT 2;
+
+UPDATE ccc_product INNER JOIN ccc_category ON ccc_product.`category_id`=ccc_category.`category_id` SET ccc_product.price = ccc_product.price * 1.05 where ccc_category.name = "Dining & Kitchen";
+
+
