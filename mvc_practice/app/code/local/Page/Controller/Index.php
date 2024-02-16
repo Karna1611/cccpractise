@@ -6,6 +6,7 @@ class Page_Controller_Index extends Core_Controller_Front_Action
     {
         // echo "from index action methond in index class";
         $layout = $this->getLayout();
+        //print_r($layout);
         $layout->getChild("head")->addJs("js/page.js");
         $layout->getChild("head")->addJs("js/home.js");
         $layout->getChild("head")->addCss("css/page.css");
