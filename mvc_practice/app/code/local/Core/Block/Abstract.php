@@ -2,10 +2,7 @@
 
 class Core_Block_Abstract
 {
-    public function setTemplate($template)
-    {
-        $this->template = $template;
-    }
+    
 
     public function getTemplate()
     {
@@ -36,9 +33,10 @@ class Core_Block_Abstract
     {
 
     }
-    public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
+    //public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
+    public function getUrl($path)
     {
-
+        return "http://localhost/cybercom_prac/mvc_practice/".$path;
     }
     public function getRequest()
     {

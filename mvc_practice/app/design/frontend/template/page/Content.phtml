@@ -1,11 +1,14 @@
 <?php 
 
-echo $this->getRequest()->getParams('pid')."<br>"; 
-$productModel = Mage::getModel('product/product')->load(1);
-echo "<pre>";
+// echo $this->getRequest()->getParams('pid')."<br>"; 
+// $productModel = Mage::getModel('catalog/product')->load(1);
+// echo "<pre>";
+// // print_r($productModel);
+// print_r($productModel->getId());
+// print_r($productModel->getProductName());
+// print_r($productModel->getsku());
 // print_r($productModel);
-print_r($productModel->getId());
-print_r($productModel->getProductName());
-print_r($productModel->getsku());
-print_r($productModel);
 ?>
+<div>
+    <?php echo $this->getChildHtml('')?>
+</div>
