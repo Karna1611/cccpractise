@@ -41,8 +41,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $layout=$this->getLayout();
         $child=$layout->getChild('content');
 
-        $productForm=$layout->createBlock('catalog/admin_product_list')
-                            ->setTemplate('catalog/admin/product.php');
+        $productForm=$layout->createBlock('catalog/admin_product_list');
         $child->addChild('list', $productForm);
 
         $layout->toHtml();

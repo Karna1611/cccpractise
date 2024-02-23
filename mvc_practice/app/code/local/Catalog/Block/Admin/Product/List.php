@@ -4,7 +4,7 @@ class Catalog_Block_Admin_Product_List extends Core_Block_Template
 {
     public function __construct()
     {
-        $this->setTemplate("product/list.phtml");
+        $this->setTemplate("catalog/admin/list.phtml");
     }
    
 }
