@@ -4,6 +4,7 @@
 class Mage
 {
     public static $baseDir = 'C:/xampp/htdocs/cybercom_prac/mvc_practice';
+    public static $baseUrl='http://localhost/cybercom_prac/mvc_practice';
     public static function init()
     {
         $frontObject = new Core_Controller_Front();
@@ -47,6 +48,14 @@ class Mage
             return self::$baseDir . '/' . $subDir;
         }
         return self::$baseDir;
+    }
+    public static function getBaseUrl($subUrl)
+    {
+        if($subUrl)
+        {
+            return self::$baseUrl .'/'. $subUrl;
+        }
+        return self::$baseUrl;
     }
 }
 

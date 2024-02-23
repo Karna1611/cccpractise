@@ -12,10 +12,10 @@ class Core_Model_Abstract
     {
         $this->init();
     }
-    public function init()
-    {
+    // public function init()
+    // {
 
-    }
+    // }
     public function setResourceClass($resourceClass)
     {
         
@@ -42,7 +42,7 @@ class Core_Model_Abstract
     }
     public function getCollection()
     {
-        
+        return new $this->_collectionClass();
     }
     
     public function getTableName()
@@ -95,8 +95,14 @@ class Core_Model_Abstract
     {
         
     }
-    public function save()
+    public function save($id)
     {
+        if($id!==null)
+        {
+            $this->setId($id);
+            $this->getResource()->update($this,$id);
+            return $this;
+        }
         $this->getResource()->save($this);
         return $this;
     }
@@ -108,7 +114,11 @@ class Core_Model_Abstract
     }
     public function delete()
     {
-        
+        if($this->getId())
+        {
+            $this->getResource()->delete($this);
+        }
+        return $this;
     }
 
 

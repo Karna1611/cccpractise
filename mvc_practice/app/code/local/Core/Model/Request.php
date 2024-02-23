@@ -18,16 +18,12 @@ class Core_Model_Request
     }
     public function __construct(){
         $uri = $this->getRequestUri();
-		// // echo"". $uri ."";
-		// $uri1 = array_filter(explode("?", $uri));
-		// // echo $uri1[1];
-		// $uri2 = array_filter(explode("#", $uri));
         $uri = array_filter(explode("/", $uri));
         $this->_modelName = isset($uri[0])?$uri[0]:"page";
         $this->_controllerName = isset($uri[1])?$uri[1]:"index";
         $this->_actionName = isset($uri[2])?$uri[2]:"index";
     }
-    public function getfullControllerName()
+    public function getFullControllerName()
     {
         $model = $this->_modelName;
         $controller = $this->_controllerName;
@@ -73,6 +69,8 @@ class Core_Model_Request
 		$str = "/cybercom_prac/mvc_practice/";
 		$request =  $_SERVER['REQUEST_URI'];
 		$uri = str_replace($str,"",$request);
+		if(strpos($uri,'?') !== false) 
+			$uri = stristr($uri, '?', True);
 		return $uri;	
 	}
 }

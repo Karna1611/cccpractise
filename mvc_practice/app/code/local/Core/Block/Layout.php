@@ -4,11 +4,14 @@ class Core_Block_Layout extends Core_Block_Template
 {
     public function __construct()
     {
-        $this->template = "core/1column.phtml";
+        $this->setTemplate("core/1column.phtml");
         $this->prepareChildren();
     }
     public function prepareChildren()
     {
+        $head = $this->createBlock("page/head");   
+        $this->addChild('head', $head);
+        
         $header = $this->createBlock("page/header");   
         $this->addChild('header', $header);
 
@@ -18,8 +21,7 @@ class Core_Block_Layout extends Core_Block_Template
         $content = $this->createBlock("page/content");   
         $this->addChild('content', $content);
 
-        $head = $this->createBlock("page/head");   
-        $this->addChild('head', $head);
+        
 
         $messages = $this->createBlock("core/template");  
         $messages->setTemplate('core/messages.phtml'); 
@@ -30,10 +32,10 @@ class Core_Block_Layout extends Core_Block_Template
     {
         return Mage::getBlock($className);
     }
-     public function getRequest()
-     {
-        return Mage::getModel('core/request');
-    }
+    // public function getRequest()
+    // {
+    //     return Mage::getModel('core/request');
+    // }
 }
 
 

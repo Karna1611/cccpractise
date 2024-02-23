@@ -1,0 +1,18 @@
+Core_Controller_Front_Action na constructor ma header and footer set karai didhi, new controller ma header footer aavi jase.
+
+
+
+Flow project no
+Index.php (savthi pela run thaay)
+	2 files include autoload badhe use thase
+	ane mage init function call 
+Mage file no init 
+	Front controller object and init
+Front controller
+	Get Model, Get Action,Get Full Controller 
+	Core_Model_Request mathi fetch
+	get module name: protected variable ne return kare che
+	
+Layout class na construct ma 1column ma karayu che 
+	toHtml layout na html ne call karse
+getChildHtml child nu Html direct render karave che 

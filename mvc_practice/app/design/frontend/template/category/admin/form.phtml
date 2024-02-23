@@ -1,0 +1,32 @@
+<div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+    <h2>Category Form </h2><br>
+    <form method="POST" action="<?php 
+    $productModel = Mage::getModel('catalog/category');
+    $id = $this->getRequest()->getParams('id');
+    if ($id != '') {
+        $productModel->load($id);
+    }
+    if ($id == null) {
+        echo $this->getUrl('admin/catalog_category/save');
+    } else {
+        echo $this->getUrl('admin/catalog_category/save?id=' . $id);
+    }
+    ?>">
+        <div class="row">
+            <label for="name">Name : </label>
+            <input type="text" name="catalog_category[category_name]" id="category_name">
+        </div>
+        <div class="row">
+            <label for="status">Status : </label>
+            <input type="text" name="catalog_category[status]" id="status">
+        </div>
+
+        <div class="row" id="sbtButton">
+            <input name="submit[submit]" type="submit" value="Submit">
+        </div>
+    
+    </form>
+    </div>
+</body>
+
+</html>

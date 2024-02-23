@@ -38,6 +38,7 @@ class Core_Model_DB_Adapter
     {
         $row=[];
         $this->connect();
+        $query=$query . " LIMIT 1";
         $result = mysqli_query($this->connect, $query);
         while ($data = mysqli_fetch_assoc($result)){
             $row = $data;
@@ -46,24 +47,36 @@ class Core_Model_DB_Adapter
     }
     public function insert($query)
     {
-        $this->connect();
+        
         $sql=mysqli_query($this->connect(),$query);
         if ($sql){  
+            echo '<script>alert("Data inserted successfully")</script>';
             return mysqli_insert_id($this->connect());
         }
         else
         {
+            echo '<script>alert("Data not inserted")</script>';
             return FALSE;
         }
 
     }
     public function update($query)
     {
-
+        $sql = mysqli_query($this->connect(),$query);
+        if ($sql) {
+            echo "<script>alert('Data Update Succsessfully!')</script>";
+        } else {
+            return FALSE;
+        }
     }
     public function delete($query)
     {
-
+        $sql = mysqli_query($this->connect(), $query);
+        if($sql){
+            echo '<script>alert("Data deleted successfully")</script>';
+        }else{
+            echo '<script>alert("Data not deleted")</script>';
+        }
     }
     public function query($query)
     {

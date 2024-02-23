@@ -2,14 +2,24 @@
 
 class Core_Controller_Front_Action
 {
-    protected $layout;
+    protected $_layout=null;
+    
+    public function __construct()
+    {
+        $layout = $this->getLayout();
+        $layout->getChild('head')
+                ->addCss('header.css');
+        $layout->getChild('head')        
+                ->addCss('footer.css');
+    }
+    
     public function getLayout()
     {
-        if(is_null($this->layout))
+        if(is_null($this->_layout))
         {
-            $this->layout = Mage::getBlock("core/layout");
+            $this->_layout = Mage::getBlock("core/layout");
         }
-        return $this->layout;
+        return $this->_layout;
     }
     public function getRequest()
     {

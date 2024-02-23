@@ -2,7 +2,7 @@
 
 class Core_Block_Template extends Core_Block_Abstract
 {
-    protected $template;
+    
     protected $_child = [];
     public function toHtml()
     {
@@ -22,13 +22,16 @@ class Core_Block_Template extends Core_Block_Abstract
 
     public function getChild($key)
     {
+        
         return $this->_child[$key];
     }
     public function getChildHtml($key)
     {
+        
         $html='';
         if($key=='' && count($this->_child))
         {
+            
             foreach($this->_child as $_child)
             {
                 $html.=$_child->toHtml();
@@ -38,18 +41,11 @@ class Core_Block_Template extends Core_Block_Abstract
         {
             $html=$this->getChild($key)->toHtml();
         }
+        
         return $html;
     }
 
-    public function getTemplate()
-    {
-        return $this->template;
-    }
-    public function setTemplate($template)
-    {
-        $this->template = $template;
-        return $this;
-    }
+   
     public function getRequest()
     {
         return Mage::getModel('core/request');
