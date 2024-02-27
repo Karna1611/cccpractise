@@ -67,7 +67,7 @@ class Core_Model_Abstract
         $name=$this->camelCase2UnderScore(substr($method,3));
         return isset($this->_data[$name])
         ? $this->_data[$name]
-        : ';' ;
+        : '' ;
     }
     public function __set($key, $value)
     {
@@ -98,20 +98,13 @@ class Core_Model_Abstract
     {
         
     }
-    public function save($id)
+    public function save()
     {
-        if($id!==null)
-        {
-            $this->setId($id);
-            $this->getResource()->update($this,$id);
-            return $this;
-        }
         $this->getResource()->save($this);
         return $this;
     }
     public function load($id, $column=null)
     {
-        //($this->getResource());
         $this->_data=$this->getResource()->load($id, $column);
         return $this;
     }

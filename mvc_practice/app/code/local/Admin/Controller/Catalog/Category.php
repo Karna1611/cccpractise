@@ -6,7 +6,8 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action{
     {
         $layout=$this->getLayout();
         $layout->getChild('head')
-               ->addCss('form.css');
+               ->addCss('forms.css')
+               ->addCss('list.css');
     }
 
     public function formAction(){
@@ -20,20 +21,29 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action{
 
     public function saveAction()
     {
-        $params=$this->getRequest()->getParams();
-        $id=isset($params['id']) ? $params['id'] :NULL;
+        
         $data=$this->getRequest()->getParams('catalog_category');
         Mage::getModel('catalog/category')
             ->setData($data)
-            ->save($id);
+            ->save();
     }
-
-    
 
     public function deleteAction()
     {
-        Mage::getModel('catalog/category')
-            ->setId($this->getRequest()->getParam('id'))
+        Mage::getModel('catalog/category')->load('category_id')
+            ->setId($this->getRequest()->getParams('id'))
             ->delete();
+    }
+
+    public function listAction()
+    {
+        $this->setFormCss();
+        $layout=$this->getLayout();
+        $child=$layout->getChild('content');
+
+        $categoryForm=$layout->createBlock('catalog/admin_category_list');
+        $child->addChild('list', $categoryForm);
+
+        $layout->toHtml();
     }
 }

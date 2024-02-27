@@ -6,7 +6,8 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     {
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('form.css');
+            ->addCss('forms.css')
+            ->addCss('list.css');
     }
     
     public function formAction()
@@ -20,13 +21,11 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     }
     public function saveAction()
     {
-        $params=$this->getRequest()->getParams();
-        $id=isset($params['id']) ? $params['id'] :NULL;
+        
         $data=$this->getRequest()->getParams('catalog_product');
-        // print_r($data);
         $product=Mage::getModel('catalog/product')
             ->setData($data)
-            ->save($id);
+            ->save();
     }
 
     public function deleteAction()
@@ -38,6 +37,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
 
     public function listAction()
     {
+        $this->setFormCss();
         $layout=$this->getLayout();
         $child=$layout->getChild('content');
 

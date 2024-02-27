@@ -6,7 +6,6 @@ class Core_Model_Resource_Collection_Abstract{
     protected $_data = [];
     public function __construct()
     {
-        echo 123;
     }
     public function setResource($resource)
     {

@@ -15,10 +15,7 @@ class Core_Model_Resource_Abstract
         return $this->_tableName;
     }
 
-    public function __construct()
-    {
-        $this->init('catalog_product','product_id');
-    }
+   
     public function load($id, $column=null)
     {
        $sql= "SELECT * FROM {$this->_tableName} WHERE
@@ -38,14 +35,22 @@ class Core_Model_Resource_Abstract
     }
     public function save(Core_Model_Abstract $abstract)
     {
-        $data=$abstract->getData();
-        if(isset($data[$this->_primaryKey]))
+        $data = $abstract->getData();
+        if(isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()]))
         {
-            unset($data[$this->_primaryKey]);
+            $sql = $this->updateSql(
+                $this->getTableName(),
+                $data, 
+                [$this->getPrimaryKey()=>$abstract->getId()]
+            );
+            // echo "123";
+            // print_r($sql);
+            $this->getAdapter()->update($sql);
+        } else {
+            $sql = $this->insertSql($this->getTableName(),$data);
+            $id =  $this->getAdapter()->insert($sql);
+            $abstract->setId($id);
         }
-        $sql= $this->insertSql($this->getTableName(),$data);
-        $id=$this->getAdapter()->insert($sql);
-        $abstract->setId($id);
     }
     public function insertSql($table_name, $data)
     {
@@ -62,7 +67,7 @@ class Core_Model_Resource_Abstract
 
     public function delete(Core_Model_Abstract $abstract)
     {
-        $query = $this->deleteSql($this->getTableName(),['product_id'=>$abstract->getId()]) ;
+        $query = $this->deleteSql($this->getTableName(),[$this->getPrimaryKey()=>$abstract->getId()]) ;
         return $this->getAdapter()->delete($query);
     }
     public function deleteSql($table_name, $whereCond)

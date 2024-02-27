@@ -1,0 +1,35 @@
+<?php
+$data = $this->getCategory(); ?>
+<div class="box">
+
+    <div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+        <h2>Category Form </h2><br>
+
+        <form method="POST" action="<?php echo $this->getUrl("admin/catalog_category/save");
+        ?>">
+            <div class="row">
+                <input type="hidden" name="catalog_category[category_id]" value="<?php echo $data->getCategoryId() ?>">
+            </div>
+            <div class="row">
+                <label for="name">Name : </label>
+                <input type="text" name="catalog_category[category_name]" value="<?php echo $data->getCategoryName() ?>">
+            </div>
+            <div class="row">
+            <label for="name">status </label>
+                <select id="status" name="catalog_category[status]" class="row" required>
+                    <option value="">---select---</option>
+                    <option value="1" <?php echo $data->getStatus() == "1" ? "Selected" : "" ?>>Enabled</option>
+                    <option value="0" <?php echo $data->getStatus() == "0" ? "Selected" : "" ?>>Disabled</option>
+                </select>
+            </div>
+
+            <div class="row" id="sbtButton">
+                <input name="submit[submit]" type="submit" value="Submit">
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
