@@ -1,14 +1,17 @@
 <?php
 
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
+    
+    protected $_allowedActions=['form'];
     public function setFormCss()
     {
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('forms.css')
+            ->addCss('form.css')
             ->addCss('list.css');
     }
+    
     
     public function formAction()
     {
@@ -24,15 +27,47 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         
         $data=$this->getRequest()->getParams('catalog_product');
         $product=Mage::getModel('catalog/product')
-            ->setData($data)
-            ->save();
+            ->setData($data)->save();
+        if ($data["product_id"]) 
+        {
+            if($product)
+            {
+                echo "<script>alert('Data Update Succsessfully!')</script>";
+                echo "<script>location.href='".Mage::getBaseUrl().'/admin/catalog_product/list' ."'</script>";
+            }
+            else
+            {
+                echo "<script>alert('Data not updated')</script>";
+            }
+        }
+        else
+        {
+            if($product)
+            {
+                echo "<script>alert('Data Inserted Successfully')</script>";
+                echo "<script>location.href='".Mage::getBaseUrl().'/admin/catalog_product/list' ."'</script>";
+            }
+            else
+            {
+                echo "<script>alert('Data not inserted')</script>";
+            }
+        }
     }
 
     public function deleteAction()
     {
-        Mage::getModel('catalog/product')->load('product_id')
+        $result=Mage::getModel('catalog/product')->load('product_id')
             ->setId($this->getRequest()->getParams('id'))
             ->delete();
+            if($result)
+            {
+                echo "<script>alert('Data Deleted Succsessfully!')</script>";
+                echo "<script>location.href='".Mage::getBaseUrl().'/admin/catalog_product/list' ."'</script>";
+            }
+            else
+            {
+                echo "<script>alert('Data not Deleted')</script>";
+            }
     }
 
     public function listAction()

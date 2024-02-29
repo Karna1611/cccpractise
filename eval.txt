@@ -1,0 +1,7 @@
+MVC Structure
+Class
+Model/Resource/Collection
+Practical: Module creation 
+CRUD 
+
+

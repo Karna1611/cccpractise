@@ -9,7 +9,7 @@ $productCollection = Mage::getModel("catalog/product")->getCollection();
         </div>
         <table>
                         <tr>
-                            <th width='200vh'>Product ID</th>
+                            <!-- <th width='200vh'>Product ID</th> -->
                             <th width='200vh'>Product Name</th>
                             <th width='200vh'>SKU</th>
                             <th width='200vh'>Category</th>
@@ -21,7 +21,7 @@ $productCollection = Mage::getModel("catalog/product")->getCollection();
 foreach ($productCollection->getData() as $product) {
     // echo $product->getStatus();
     // echo '' . $product->getProductId();
-    echo "<tr><td class = 'column'>" . $product->getProductId() . "</td><td class = 'column'>" . $product->getName() . "</td><td class = 'column'>" . $product->getSku() . "</td><td class = 'column'>" . $product->getCategoryId(). "</td>";
+    echo "</td><td class = 'column'>" . $product->getName() . "</td><td class = 'column'>" . $product->getSku() . "</td><td class = 'column'>" . $product->getCategoryId(). "</td>";
     ?>
     <td align='center' class='button'> <a
                         href='<?php echo $this->getUrl('admin/catalog_product/form/') ?>?id=<?php echo $product->getProductId() ?>'><button

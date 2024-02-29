@@ -1,0 +1,24 @@
+<div class="box">
+    <div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+        <h2>Customer Login</h2>
+            <form action="<?php echo $this->getUrl('customer/account/login') ?>" method="post">
+
+                    <div class="row">
+                    <label for="customer_email">Customer E-mail</label>
+                        <input type="email" id="customer_email" name="customer[customer_email]"
+                            value="">
+                    </div>
+
+                    <div class="row">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="customer[password]"
+                            value="">
+                    </div>
+
+                </div>
+                <div class="row" id="sbtButton">
+                    <input type="submit" name="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+

@@ -10,6 +10,8 @@ class Core_Controller_Front
         $fullClassName = $requestModel->getFullControllerName();
         // echo $controllerName;
         $Layout = new $fullClassName();
+        //echo get_class($Layout);
+        //print_r($Layout);
         $Layout->$actionName();
     }
 }

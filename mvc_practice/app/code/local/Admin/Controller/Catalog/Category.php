@@ -1,6 +1,6 @@
 <?php
 
-class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action{
+class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action{
     
     public function setFormCss()
     {
@@ -23,16 +23,50 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action{
     {
         
         $data=$this->getRequest()->getParams('catalog_category');
-        Mage::getModel('catalog/category')
-            ->setData($data)
-            ->save();
-    }
+        $category=Mage::getModel('catalog/category')
+            ->setData($data);
+        $categoryData=$category->save();
+        if ($data["category_id"]) 
+        {
+            if($categoryData)
+            {
+                echo "<script>alert('Data Update Succsessfully!')</script>";
+                echo "<script>location.href='".Mage::getBaseUrl().'/admin/catalog_category/list' ."'</script>";
+            }
+            else
+            {
+                echo "<script>alert('Data not updated')</script>";
+            }
+        }
+        else
+        {
+            if($categoryData)
+            {
+                echo "<script>alert('Data Inserted Successfully')</script>";
+                echo "<script>location.href='".Mage::getBaseUrl().'/admin/catalog_category/list' ."'</script>";
+            }
+            else
+            {
+                echo "<script>alert('Data not inserted')</script>";
+            }
+        }
+    }    
 
     public function deleteAction()
     {
-        Mage::getModel('catalog/category')->load('category_id')
-            ->setId($this->getRequest()->getParams('id'))
-            ->delete();
+        $result=Mage::getModel('catalog/category')->load('category_id')
+        ->setId($this->getRequest()->getParams('id'))
+        ->delete();
+        if($result)
+        {
+            echo "<script>alert('Data Deleted Succsessfully!')</script>";
+            echo "<script>location.href='".Mage::getBaseUrl().'/admin/catalog_category/list' ."'</script>";
+        }
+        else
+        {
+            echo "<script>alert('Data not Deleted')</script>";
+        }
+
     }
 
     public function listAction()

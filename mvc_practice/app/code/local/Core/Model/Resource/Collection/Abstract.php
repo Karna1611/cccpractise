@@ -2,6 +2,7 @@
 
 class Core_Model_Resource_Collection_Abstract{
     protected $_resource=null;
+    protected $_modelClass=null;
     protected $_select=[];
     protected $_data = [];
     public function __construct()
@@ -10,6 +11,15 @@ class Core_Model_Resource_Collection_Abstract{
     public function setResource($resource)
     {
         $this->_resource = $resource;
+        return $this;
+    }
+    public function getModelClass()
+    {
+        return new $this->_modelClass;
+    }
+    public function setModelClass($modelClass)
+    {
+        $this->_modelClass= $modelClass;
         return $this;
     }
     public function select()
@@ -55,18 +65,19 @@ class Core_Model_Resource_Collection_Abstract{
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
             // print_r($whereCondition);
+            // print_r($sql);
         }
         // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
-            $this->_data[] = Mage::getModel('catalog/product')->setData($row);
+           
+            $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
         }
-    
-        
     }
     public function getData()
     {
         $this->load();
+        //print_r($this->_data);
         return $this->_data;
     }
     

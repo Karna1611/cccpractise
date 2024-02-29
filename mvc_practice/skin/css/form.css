@@ -28,6 +28,8 @@ label {
 
 /* Text inputs and textareas */
 input[type="text"],
+input[type="email"],
+input[type="password"],
 input[type="number"],
 textarea {
     /* width: calc(100% - 70px); */

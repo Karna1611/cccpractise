@@ -5,6 +5,7 @@ class Mage
 {
     public static $baseDir = 'C:/xampp/htdocs/cybercom_prac/mvc_practice';
     public static $baseUrl='http://localhost/cybercom_prac/mvc_practice';
+    private static $_singleTon=null; 
     public static function init()
     {
         $frontObject = new Core_Controller_Front();
@@ -29,6 +30,15 @@ class Mage
 
     public static function getSingleton($className)
     {
+        if(isset(self::$_singleTon[$className]))
+        {
+            return  self::$_singleTon[$className]; 
+        }
+        else
+        {
+
+            return self::$_singleTon[$className] = self::getModel($className); 
+        }
 
     }
 
@@ -49,13 +59,13 @@ class Mage
         }
         return self::$baseDir;
     }
-    public static function getBaseUrl($subUrl)
+    public static function getBaseUrl($subUrl=null)
     {
         if($subUrl)
         {
             return self::$baseUrl .'/'. $subUrl;
         }
-        return self::$baseUrl;
+        return self::$baseUrl.'/';
     }
 }
 
