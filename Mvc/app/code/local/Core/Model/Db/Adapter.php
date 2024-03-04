@@ -1,34 +1,45 @@
 <?php
 
-class Core_Model_Db_Adapter
+class Core_Model_DB_Adapter
 {
+
     public $config = [
-        "dbname" => "ccc_practice",
-        "hostname" => "localhost",
-        "user" => "root",
-        "password" => "",
+        "host"=> "localhost",
+        "user"=> "root",
+        "password"=> "",
+        "database"=>"ccc_practise",
     ];
     public $connect = null;
     public function connect()
     {
         if(is_null($this->connect)){
             $this->connect = mysqli_connect(
-                $this->config['hostname'],
-                $this->config['user'],
-                $this->config['password'],
-                $this->config['dbname'],
-            );
+                $this->config["host"], 
+                $this->config["user"], 
+                $this->config["password"], 
+                $this->config["database"]);
         }
+        
+        return $this->connect;
     }
     public function fetchAll($query)
     {
+        $row=[];
+        $result = $this->connect()->query($query);
+        while($_row = mysqli_fetch_assoc($result)){
+            $row[] = $_row;
+        }
+        return $row;
     }
+    
+   
     public function fetchPairs($query)
     {
     }
     public function fetchOne($query)
     {
     }
+    
     public function fetchRow($query)
     {
         $row=[];
@@ -40,16 +51,43 @@ class Core_Model_Db_Adapter
         }
         return $row;
     }
+
+    
     public function insert($query)
     {
+        $result = mysqli_query($this->connect(), $query);
+        if($result){
+            return mysqli_insert_id($this->connect);
+        }else{
+            return FALSE;
+        }
     }
+
+    
     public function update($query)
     {
+        $sql = mysqli_query($this->connect(), $query);
+        if ($sql) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
     public function delete($query)
     {
+       
+        $sql = mysqli_query($this->connect(), $query);
+        if ($sql) {
+          return TRUE;
+        } else {
+           return FALSE;
+         
+        }
     }
+
     public function query($query)
     {
     }
+  
+
 }

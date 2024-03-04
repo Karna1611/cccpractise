@@ -43,14 +43,15 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         }
         else {
             $data = $this->getRequest()->getParams('customer');
-           echo '<pre>';
+            echo '<pre>';
+            var_dump($data);
             $email = $data['customer_email'];
             $password = $data['password'];
-            $customerCollection = Mage::getModel('customer/register');
+            $customerCollection = Mage::getModel('customer/customer');
             $query=$customerCollection->getCollection()
                 ->addFieldToFilter('customer_email', $email)
                 ->addFieldToFilter('password', $password);
-            print_r($query);
+            //print_r($query);
             $count = 0;
             $customerId = 0;
             foreach ($query->getData() as $customer) {
@@ -61,8 +62,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             echo $count;
             if ($count == 1) {
                 Mage::getSingleton('core/session')->set('customer_id', $customerId);
-                // $dashboard = Mage::getBaseUrl('customer/account/dashboard');
-                // header("location:$dashboard");
                 $this->setRedirect('customer/account/dashboard');
             } else {
                 //echo "Wrong password";
@@ -85,9 +84,12 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     public function saveAction()
     {
         $registerModel=$this->getRequest()->getParams('customer');
-        Mage::getModel('customer/Register')
+       $result = Mage::getModel('customer/customer')
             ->setData($registerModel)
             ->save();
+        if ($result) {
+            $this->setRedirect('customer/account/login');
+        }
 
     }
 }

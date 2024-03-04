@@ -8,7 +8,7 @@ class Core_Controller_Admin_Action extends Core_Controller_Front_Action
     {
         $this->getLayout()->setTemplate("core/admin.phtml");
         if(!in_array($this->getRequest()->getActionName(), $this->_allowedActions) && 
-        !Mage::getSingleton('core/session')->get('admin_user_id'))
+        !Mage::getSingleton('core/session')->get("logged_in_admin_user_id"))
         {
             $this->setRedirect('admin/user/login');
         }

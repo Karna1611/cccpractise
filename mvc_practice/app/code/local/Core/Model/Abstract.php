@@ -8,10 +8,12 @@ class Core_Model_Abstract
     protected $_collectionClass = '';
     protected $_resource = null;
     protected $_collection = null;
-    protected $_modelClass=null;
+    //protected $_modelClass=null;
     public function __construct()
     {
+        //print_r(get_class($this));die;
         $this->init();
+       
     }
     // public function init()
     // {
@@ -45,7 +47,7 @@ class Core_Model_Abstract
     {
         $collection=new $this->_collectionClass();
         $collection->setResource($this->getResource());
-        $collection->setModelClass($this->_modelClass);
+        $collection->setModelClass(get_class($this));
         $collection->select();
         return $collection;
     }

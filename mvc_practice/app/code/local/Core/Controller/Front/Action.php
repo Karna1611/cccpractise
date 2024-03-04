@@ -30,10 +30,20 @@ class Core_Controller_Front_Action
     {
         return Mage::getModel("core/request");
     }
+
+    // public function setFormCss($file)
+    // {
+    // $layout = $this->getLayout();
+    // $layout->getChild('head')
+    //     ->addCss($file.'.css');
+    // }
     public function setRedirect($url)
     {
-        $url=Mage::getBaseUrl().$url;
-        header('Location:'. $url);
+        $url=Mage::getBaseUrl($url);
+        // echo $url;
+        header("Location: {$url}");
+        exit();
+        // echo "<script>location.href='".$url ."'</script>";
     }
 }
 

@@ -1,0 +1,61 @@
+<?php
+
+
+$cartData = $this->getCartData();
+$productCollection = $this->showList();
+
+$categoryModel = Mage::getModel('catalog/category');
+$categoryNames = $categoryModel->getCategoryIdName();
+
+?>
+<main>
+
+
+
+    <div class="card">
+        <?php foreach ($productCollection->getData() as $product) { ?>
+            <div class="contenitore">
+                <img src="<?php echo Mage::getImagePath("product/" . $product->getImageLink()) ?>" alt="immagine">
+                <h2 class="album">
+                    <?php echo $product->getName(); ?>
+                </h2>
+                <p class="details">
+                    <?php echo $product->getDescription() ? $product->getDescription() : ""; ?>
+                </p>
+                <p class="prezzo">20,00 €</p>
+                <a href="<?php echo $this->getUrl('sales/quote/add') ?>?id=<?php echo $product->getProductId() ?>"
+                    class="link">🛒</a>
+            </div>
+        <?php } ?>
+    </div>
+    <aside>
+        <?php
+        if (!empty($cartData)) {
+            echo '<h2 id="cart">🛒 Your Cart</h2>';
+            echo '<ul>';
+
+            foreach ($cartData as $customerId => $products) {
+                foreach ($products as $productId => $product) {
+                    if (isset($product['id'], $product['quantity']) && !empty($product['id']) && !empty($product['quantity'])) {
+                        echo '<li>';
+                        echo 'Product ID: ' . $product['id'] . ' | Quantity: ' . $product['quantity'];
+                        echo '</li>';
+
+                        echo '<div class="displayx">';
+                        echo '<a href="' . $this->getUrl('sales/quote/remove') . '?id=' . $product["id"] . '" class="remove">🗑</a>';
+                        echo '<a href="' . $this->getUrl('sales/quote/postdata') . '?id=' . $product["id"] . '" class="order">Proceed to order</a>';
+                        echo '</div>';
+                    } else {
+
+                    }
+                }
+            }
+
+            echo '</ul>';
+        } else {
+            echo '<h2 id="cart">🛒 Your Cart is Empty</h2>';
+        }
+        ?>
+    </aside>
+    <a href="#top" id="top" class="top">🔝</a>
+</main>

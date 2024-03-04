@@ -4,6 +4,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
     
     protected $_allowedActions=['form'];
+   
     public function setFormCss()
     {
         $layout = $this->getLayout();
@@ -18,7 +19,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         $this->setFormCss();
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $form = $layout->createBlock('catalog/admin_product_form');
+        $form = $layout->createBlock('catalog/admin_product_form'); //createBlock,getModel,getCollection,getBlock object return,getResource(),getRequest();,getChild('params'):returns an object of Page_Block_{params};
         $child->addChild('form', $form);
         $layout->toHtml();
     }
@@ -72,13 +73,11 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 
     public function listAction()
     {
-        $this->setFormCss();
+        //$this->setFormCss();
         $layout=$this->getLayout();
-        $child=$layout->getChild('content');
-
+        $child=$layout->getChild('content'); 
         $productForm=$layout->createBlock('catalog/admin_product_list');
         $child->addChild('list', $productForm);
-
-        $layout->toHtml();
+        $layout->toHtml(); //toHtml() 1columnHtml thase;
     }
 }

@@ -6,7 +6,6 @@ class Page_Controller_Index extends Core_Controller_Front_Action
     {
         // echo "from index action methond in index class";
         $layout = $this->getLayout();
-        //print_r($layout);
         //$layout->getChild("head")->addJs("js/page.js");
         //$layout->getChild("head")->addJs("js/home.js");
         $layout->getChild("head")->addCss("header.css");
@@ -17,9 +16,19 @@ class Page_Controller_Index extends Core_Controller_Front_Action
                     
         $layout->getChild("content")
                     ->addChild('banner', $banner);
+                    Mage::getImagePath("banner/banner.jpg");
         //echo "<pre>";
         // print_r($layout);
         $layout->toHtml();
+    }
+
+    public function saveAction()
+    {
+        echo "Save Page";
+    }
+    public function listAction()
+    {
+        echo "List Page";
     }
 }
 

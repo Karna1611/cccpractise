@@ -1,16 +1,22 @@
 <?php
 
-class Customer_Controller_Index{
-    public function saveAction(){
-        echo dirname(__FILE__);
+class Customer_Controller_Index extends Core_Controller_Front_Action
+{
+    public function newAction()
+    {
+        echo "Address New Action";
     }
-    public function deleteAction(){
-        echo dirname(__FILE__);
+    public function listAction()
+    {
+        echo "Address New Action";
     }
-    public function updateAction(){
-        echo dirname(__FILE__);
+    public function saveAction()
+    {
+        echo "Address New Action";
     }
-    public function listAction(){
-        echo dirname(__FILE__);
+    public function deleteAction()
+    {
+        echo "Address New Action";
     }
+
 }

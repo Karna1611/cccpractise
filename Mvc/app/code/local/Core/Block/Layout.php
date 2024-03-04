@@ -1,32 +1,32 @@
 <?php
-
 class Core_Block_Layout extends Core_Block_Template
 {
     public function __construct()
     {
-        $this->setTemplate('core/1column.phtml');
-        // $this->setTemplate('product/form.phtml');
+        $this->setTemplate('core/1column.phtml'); //template set karayu khali template variable ma set krine ape value
         $this->prepareChildren();
-        // return $this;
     }
     public function prepareChildren()
     {
-        $head = $this->createBlock('page/head');
-        $this->addChild('head', $head);
-        $header = $this->createBlock('page/header');
+        $header = $this->createBlock('page/header'); //page_block_header no object banaine apse
         $this->addChild('header', $header);
-        $footer = $this->createBlock('page/footer');
-        $this->addChild('footer', $footer);
+
         $content = $this->createBlock('page/content');
         $this->addChild('content', $content);
+
+        $footer = $this->createBlock('page/footer');
+        $this->addChild('footer', $footer);
+
+        $head = $this->createBlock('page/head');
+        $this->addChild('head', $head);
+
         $messages = $this->createBlock('core/template');
         $messages->setTemplate('core/messages.phtml');
         $this->addChild('messages', $messages);
-
     }
     public function createBlock($className)
     {
-        return Mage::getBlock($className);
+        return Mage::getBlock($className);//upar thi creatBlock na parameter no
     }
-    
+
 }
