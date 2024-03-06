@@ -14,7 +14,7 @@ class Banner_Model_Banner extends Core_Model_Abstract
             0 => "D"
         ];
 
-        if(isset($mapping[$this->_data["status"]]))
-        return $mapping[$this->_data['status']];
+        if(isset($mapping[$this->_status]))
+            return $mapping[$this->_data['status']];
     }
 }

@@ -1,0 +1,36 @@
+<?php
+$brandCollection=Mage::getModel("brand/brand")->getCollection();
+
+?>
+
+<div class="box">
+    <div class="container-list">
+        <div class="add">
+            <div class="title">Brand Information</div>
+            <a href='<?php echo $this->getUrl('brand/brand/form') ?>'><button class="add_btn">Add</button></a>
+        </div>
+        <table>
+                        <tr>
+                            <th width='200vh'>Brand Name</th>
+                            <th width='200vh'>Status</th>
+                            <th width='200vh'>Edit</th>
+                            <th width='200vh'>Delete</th>
+                        </tr>    
+<?php 
+    foreach ($brandCollection->getData() as $brand) {
+        echo "<tr><td class = 'column'>" . $brand->getBrandName() . "</td><td class = 'column'>" . $brand->getStatus(). "</td>";
+        ?>
+        <td align='center' class='button'> <a
+                            href='<?php echo $this->getUrl('brand/brand/form/') ?>?id=<?php echo $brand->getBrandId() ?>'><button
+                                class='upd'>Edit</button></a> </td>
+                    <td align='center' class='button'> <a
+                            href='<?php echo $this->getUrl('brand/brand/delete/') ?>?id=<?php echo $brand->getBrandId() ?>'><button
+                                class='del'>Delete</button></a> </td>
+                    </tr>
+        <?php
+    }
+    ?>
+    </table>
+    </div>
+    </div>       
+

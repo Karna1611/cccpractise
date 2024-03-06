@@ -1,0 +1,54 @@
+<?php
+$data=$this->getBmiCalculator();
+?>
+
+<div class="box">
+
+
+    <div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+        <h2>BMI Form </h2><br>
+        <form method="POST" action="<?php echo $this->getUrl('bmicalculator/bmicalculator/save'); ?>">
+        <input type="hidden" name="bmicalculator[id]" value="<?php echo $data->getId()?>">
+            
+        
+            <div class="row">
+                <label for="name">User Name : </label>
+                <input type="text" required name="bmicalculator[user_name]" value="<?php echo $data->getUserName()?>">
+            </div>
+
+            <div class="row">
+                <label for="name">Weight: </label>
+                <input type="number" required name="bmicalculator[weight]" value="<?php echo $data->getWeight()?>">
+            </div>
+
+            <div class="row">
+                <label for="name">Height: </label>
+                <input type="number" required name="bmicalculator[height]" value="<?php echo $data->getHeight()?>">
+            </div>
+
+            <div class="row">
+                <label for="name">Weight </label>
+                <select id="weight" name="bmicalculator[weight]" class="row" required>
+                    <option value="">---select---</option>
+                    <option value="1" <?php echo (($data->getWeight() == "Kilogram") ? 'selected' : '') ?>>Kilogram</option>
+                    <option value="0" <?php echo (($data->getWeight() == "Pound") ? 'selected' : '') ?>>Pound</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <label for="name">Height </label>
+                <select id="height" name="bmicalculator[height]" class="row" required>
+                    <option value="">---select---</option>
+                    <option value="1" <?php echo (($data->getWeight() == "Meter") ? 'selected' : '') ?>>Meter</option>
+                    <option value="0" <?php echo (($data->getWeight() == "Feet") ? 'selected' : '') ?>>Feet</option>
+                </select>
+            </div>
+
+
+            <div class="row" id="sbtButton">
+                <input name="submit[submit]" type="submit" value="Calculate">
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,43 @@
+<?php
+$bmiCollection=Mage::getModel("bmicalculator/bmicalculator")->getCollection();
+
+?>
+
+<div class="box">
+    <div class="container-list">
+        <div class="add">
+            <div class="title">BMI Information</div>
+            <a href='<?php echo $this->getUrl('bmicalculator/bmicalculator/form') ?>'><button class="add_btn">Add</button></a>
+        </div>
+        <table>
+                        <tr>
+                            <!-- <th width='200vh'>Category ID</th> -->
+                            <th width='200vh'>User Name</th>
+                            <th width='200vh'>Weight</th>
+                            <th width='200vh'>Height</th>
+                            <th width='200vh'>Result</th>
+                            <th width='200vh'>Created_At</th>
+                        </tr>    
+<?php 
+    foreach ($bmiCollection->getData() as $bmi) {
+        echo "<tr>
+        <td class = 'column'>" . $bmi->getUserName() . "</td>
+        <td class = 'column'>" . $bmi->getWeight(). "</td>
+        <td class = 'column'>" . $bmi->getHeight(). "</td>
+        <td class = 'column'>" . $bmi->getResult(). "</td>
+        <td class = 'column'>" . $bmi->getCreatedAt(). "</td>"
+        ;
+        ?>
+        <td align='center' class='button'> <a
+                            href='<?php echo $this->getUrl('bmicalculator/bmicalculator/form/') ?>?id=<?php echo $bmi->getId() ?>'><button
+                                class='upd'>Edit</button></a> </td>
+                    <td align='center' class='button'> <a
+                            href='<?php echo $this->getUrl('bmicalculator/bmicalculator/delete/') ?>?id=<?php echo $bmi->getId() ?>'><button
+                                class='del'>Delete</button></a> </td>
+                    </tr>
+        <?php
+    }
+    ?>
+    </table>
+    </div>
+    </div>       

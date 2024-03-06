@@ -15,10 +15,10 @@ class Core_Model_Abstract
         $this->init();
        
     }
-    // public function init()
-    // {
+    public function init()
+     {
 
-    // }
+    }
     public function setResourceClass($resourceClass)
     {
         
@@ -102,9 +102,21 @@ class Core_Model_Abstract
     {
         
     }
+
+    protected function _beforeSave() 
+    {
+
+    }
+
+    protected function _afterSave() 
+    {
+        
+    }
     public function save()
     {
+        $this->_beforeSave();
         $this->getResource()->save($this);
+        $this->_afterSave();
         return $this;
     }
     public function load($id, $column=null)

@@ -9,7 +9,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     {
         // $this->getRequest()->getActionName();
         if(!in_array($this->getRequest()->getActionName(), $this->_allowedActions) && 
-        !Mage::getSingleton('core/session')->get('customer_id'))
+        !Mage::getSingleton('core/session')->get('logged_in_customer_id'))
         {
             $this->setRedirect('customer/account/login');
         }
@@ -26,48 +26,42 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $this->setFormCss();
         $layout=$this->getLayout();
         $child=$layout->getChild('content');
-        $register=$layout->createBlock('customer/register');
+        $register=$layout->createBlock('customer/register')->setTemplate('customer/account/register.phtml');
         $child->addChild('register',$register);
         $layout->toHtml();
     }
     public function loginAction()
     {
-        if (!isset($_POST['submit']))
-        {
-            $this->setFormCss();
-            $layout=$this->getLayout();
-            $child=$layout->getChild('content');
-            $login=$layout->createBlock('customer/login');
-            $child->addChild('login',$login);
-            $layout->toHtml();
+        if(isset($_POST["submit"])){
+        $data = $this->getRequest()->getParams("login");
+        $model= Mage::getModel("customer/customer");
+        $result =   $model->getCollection()
+        ->addFieldToFilter("customer_email", $data["customer_email"])
+        ->addFieldToFilter("password", $data["password"]);
+        $count=0;
+        $customerId =0;
+        foreach($result->getData() as $row){
+            $count++;
+            $customerId = $row->getCustomerId();
         }
-        else {
-            $data = $this->getRequest()->getParams('customer');
-            echo '<pre>';
-            var_dump($data);
-            $email = $data['customer_email'];
-            $password = $data['password'];
-            $customerCollection = Mage::getModel('customer/customer');
-            $query=$customerCollection->getCollection()
-                ->addFieldToFilter('customer_email', $email)
-                ->addFieldToFilter('password', $password);
-            //print_r($query);
-            $count = 0;
-            $customerId = 0;
-            foreach ($query->getData() as $customer) {
-                $count++;
-                $customerId = $customer->getCustomerId();
-            }
+        if($count){
+            Mage::getSingleton("core/session")->set("logged_in_customer_id",$customerId);
+            $this->setRedirect("customer/account/dashboard");
+        }
+        else{
+            $this->setRedirect("customer/account/login");    
+        }
 
-            echo $count;
-            if ($count == 1) {
-                Mage::getSingleton('core/session')->set('customer_id', $customerId);
-                $this->setRedirect('customer/account/dashboard');
-            } else {
-                //echo "Wrong password";
-                $this->setRedirect('customer/account/login');
-            }
-        }
+    }
+    else{   
+        $layout = $this->getLayout();
+        //$layout->removeChild('header')->removeChild('footer');
+        $child = $layout->getChild('content');
+        $layout->getChild('head')->addCss('form.css');//addCss('header.css')
+        $login = $layout->createBlock('customer/login')->setTemplate('customer/account/login.phtml');
+        $child->addChild('login', $login);
+        $layout->toHtml();
+    }
     }
 
     public function dashboardAction()
@@ -88,8 +82,18 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             ->setData($registerModel)
             ->save();
         if ($result) {
-            $this->setRedirect('customer/account/login');
+            echo '<script>alert("Data insert successfully")</script>';
+           // $this->setRedirect('customer/account/login');
+           echo "<script>location.href='" . Mage::getBaseUrl() . '/customer/account/login' . "'</script>";
         }
+        else{
+            echo '<script>alert("OOPS! Something Went Wrong !!!! ")</script>';
+            echo "<script>location.href='" . Mage::getBaseUrl() . '/customer/account/register' . "'</script>";
+        }
+
+    }
+
+    public function deleteAction(){
 
     }
 }

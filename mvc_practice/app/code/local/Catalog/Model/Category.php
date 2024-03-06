@@ -24,4 +24,20 @@ class Catalog_Model_Category extends Core_Model_Abstract
             return $mapping[$productData['category_id']];
         }
     }
+
+    public function getStatus()
+    {
+        $mapping = [
+            1 => "Enabled",
+            0 => "Disabled"
+        ];
+        // var_dump($mapping);
+        // echo"<pre>";
+        // var_dump($this->_data);
+        // var_dump($this->_data['status']);
+        // print_r($this->_data['status']);
+        return isset($this->_data['status'])?
+           $mapping[$this->_data['status']]:"";
+   
+    }
 }
