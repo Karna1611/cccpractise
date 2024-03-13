@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+    <?php echo ($this->getChildHtml('head')); ?>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css">
+</head>
+
+<body>
+    <div>
+        <?php echo ($this->getChildHtml('header')); ?>
+    </div>
+
+    <!-- <div>
+        <?php echo ($this->getChildHtml('messages')); ?>
+    </div> -->
+    <div>
+        <?php echo ($this->getChildHtml('content')); ?>
+    </div>
+
+    <div>
+        <?php echo ($this->getChildHtml('footer')); ?>
+    </div>
+</body>
+
+</html>
