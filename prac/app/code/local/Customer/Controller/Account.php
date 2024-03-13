@@ -40,14 +40,14 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                 echo '<script>alert("Data Update successfully")</script>';
                 echo "<script>location.href='" . Mage::getBaseUrl() . '/admin/catalog_category/list' . "'</script>";
             } else {
-                echo '<script>alert("Dofa Code Ma Locha Chhe")</script>';
+                echo '<script>alert("ERROR")</script>';
             }
         } else {
             if ($result) {
                 echo '<script>alert("Data Insert successfully")</script>';
                 echo "<script>location.href='" . Mage::getBaseUrl() . '/admin/catalog_category/list' . "'</script>";
             } else {
-                echo '<script>alert("Dofa Code Ma Locha Chhe")</script>';
+                echo '<script>alert("ERROR")</script>';
             }
         }
     }
@@ -73,7 +73,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                 // die();
                 $this->setRedirect('customer/account/dashboard');
             }else{
-                echo '<script>alert("Dofa password to sarkho nakh!!!!!")</script>';
+                echo '<script>alert(ERROR")</script>';
                 echo "<script>location.href='" . Mage::getBaseUrl() . '/customer/account/login' . "'</script>";
 
             }
